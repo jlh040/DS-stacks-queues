@@ -21,7 +21,7 @@ class Queue {
 
   enqueue(val) {
     const newNode = new Node(val);
-    
+
     if (!this.first) {
       this.first = newNode;
       this.last = newNode;
@@ -40,7 +40,24 @@ class Queue {
    * and return its value. Should throw an error if the queue is empty. */
 
   dequeue() {
+    let removedVal;
 
+    if (!this.first) {
+      throw Error('Queue is empty!');
+    }
+    else if (this.length === 1) {
+      removedVal = this.first.val;
+      this.first = null;
+      this.last = null;
+      this.size--;
+      return removedVal;
+    }
+    else {
+      removedVal = this.first.val;
+      this.first = this.first.next;
+      this.size--
+      return removedVal;
+    }
   }
 
   /** peek(): return the value of the first node in the queue. */
